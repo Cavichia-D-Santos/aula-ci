@@ -24,5 +24,21 @@
             <td>009.876.543-21</td>
         </tr>
     </table>
+    <script>
+        function NewProblems(){
+            nome = 'fulano';
+            fetch("http://jsonplaceholder.typicode.com/posts", {
+                method: "POST",
+                body: JSON.stringfy({
+                    title: nome,
+                    body: "bar",
+                    userId: 1
+                }),
+                headers: {
+                    "Content-type": "application/json; charset-UTF-8"
+                }
+            })
+        }
+    </script>
 </body>
 </html>
