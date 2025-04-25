@@ -4,7 +4,7 @@ on:
   push:
     branches:
       - main
-job:
+jobs:
   ci:
     name: build and analyse
     runs-on: ubuntu-latest
