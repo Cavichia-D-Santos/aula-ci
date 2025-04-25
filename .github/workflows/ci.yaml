@@ -1,0 +1,26 @@
+name: ci
+run-name: pipeline de ci e analise de codigo
+on:
+  push:
+    branches:
+      - main
+job:
+  ci:
+    name: build and analyse
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: SonarSource/sonarqube-scan-action@v5
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+        with:
+          args: >
+            -Dsonar.projectKey=site-ci-sonar
+            -Dsonar.projectName=site-ci-sonar
+            -Dsonar.projectVersion=1.0
+            -Dsonar.sources=.
